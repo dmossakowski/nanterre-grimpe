@@ -1,0 +1,114 @@
+(function($){
+/**************************************************************************************************************
+	 * Détection du device
+	 **************************************************************************************************************/
+	var isMobile = {
+		Android: function () {
+			return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry: function () {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS: function () {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera: function () {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows: function () {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+		any: function () {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};
+	var mobile = isMobile.any();
+
+/**************************************************************************************************************
+     * Gestion du cookie de Home
+**************************************************************************************************************/
+/* function createCookie(name, value) {
+	var date = new Date();
+	date.setTime(date.getTime() + (20 * 60 * 1000)); //20 minutes
+	var expires = "; expires=" + date.toGMTString();
+	document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name, deft) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return deft;
+} */
+function loadCaroufredsel(){
+	if ($("#foo1").length>0){
+		$("#foo1").carouFredSel({
+			 responsive: true,
+			 items : {
+				width:980,
+				height:"29%"
+				
+			 },
+			 scroll : {
+				items:  1,
+				duration : 1000,
+				pauseDuration : 7000,
+				fx: "crossfade"
+			 },
+			 
+			 auto : true,
+			 prev : "#foo1_prev",
+			 next : "#foo1_next"
+			 }).parent().css("margin", "auto");
+		}		
+}
+
+/* function doAnimPage(idDomEl){
+	var windowWidth = $(window).width();
+	var targetWidth = $("#"+idDomEl).width();
+	var centerTargetWidth = (windowWidth/2) - (targetWidth/2);
+	console.log(centerTargetWidth);
+	$("#"+idDomEl).css("margin-left","-"+windowWidth+"px").delay(2000).animate({
+	marginLeft: centerTargetWidth
+  }, 2000, "easeInOutExpo", function() {
+    // Animation complete.
+  })
+} */	
+
+// jquery action dom ready
+
+	$(document).ready(function(){
+	loadCaroufredsel();	
+	/**************************************************************************************************************
+     * Gestion du body show/hide
+     **************************************************************************************************************/
+
+    /* var page_started = readCookie('page_start', 'false');
+    
+	if (page_started != 'true' && !mobile) {
+		doAnimPage('page');
+    }
+ 
+    createCookie('page_start', 'true'); */
+	
+	// slideUp/Down cotation
+		/* $(".cntSecteur .secteur:not(:first-child) .cntTable").hide();
+		$(".cntSecteur .secteur a").on("click",function(e){
+			e.preventDefault()
+			var targetToOpen = $(this).closest(".secteur").find(".cntTable");
+			if(! targetToOpen.is(":visible")){
+				$(".cntSecteur .secteur .cntTable").slideUp();
+				$(".cntSecteur .secteur a").removeClass("active");
+				targetToOpen.slideDown();
+				$(this).addClass("active");
+			}else{
+				targetToOpen.slideUp();
+				$(this).removeClass("active");
+			}
+		}); */
+	});
+})(jQuery);
